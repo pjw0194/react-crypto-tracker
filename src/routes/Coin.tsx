@@ -1,14 +1,7 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router";
-import {
-  useLocation,
-  Routes,
-  Route,
-  Link,
-  useMatch,
-  Outlet,
-} from "react-router-dom";
+import { useLocation, Routes, Route, Link, useMatch } from "react-router-dom";
 import styled from "styled-components";
 import { fetchCoinInfo, fetchCoinTickers } from "./api";
 import Chart from "./Chart";
@@ -16,6 +9,8 @@ import Price from "./Price";
 
 const Container = styled.div`
   padding: 0px 20px;
+  max-width: 480px;
+  margin: 0 auto;
 `;
 
 const Header = styled.header`
@@ -33,12 +28,6 @@ const Title = styled.h1`
 const Loader = styled.span`
   display: block;
   text-align: center;
-`;
-
-const Info = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 `;
 
 const CoinInfo = styled.div`
@@ -194,7 +183,7 @@ function Coin() {
       {loading ? (
         <Loader>Loading...</Loader>
       ) : (
-        <Info>
+        <>
           <CoinInfo>
             <CoinCol>
               <span>rank:</span>
@@ -231,11 +220,12 @@ function Coin() {
               <Link to="price">Price</Link>
             </Tab>
           </Tabs>
+
           <Routes>
             <Route path="price" element={<Price />} />
             <Route path="chart" element={<Chart coinId={coinId!} />} />
           </Routes>
-        </Info>
+        </>
       )}
     </Container>
   );
