@@ -231,7 +231,10 @@ function Coin() {
               <Link to="price">Price</Link>
             </Tab>
           </Tabs>
-          <Outlet />
+          <Routes>
+            <Route path="price" element={<Price />} />
+            <Route path="chart" element={<Chart coinId={coinId!} />} />
+          </Routes>
         </Info>
       )}
     </Container>
