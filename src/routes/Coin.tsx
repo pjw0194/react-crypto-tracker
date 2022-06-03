@@ -9,9 +9,17 @@ import Price from "./Price";
 import { Helmet } from "react-helmet";
 
 const Container = styled.div`
+  position: relative;
   padding: 0px 20px;
   max-width: 480px;
   margin: 0 auto;
+`;
+
+const Previous = styled.div`
+  position: absolute;
+  top: 55px;
+  left: 30px;
+  font-size: 30px;
 `;
 
 const Header = styled.header`
@@ -184,6 +192,9 @@ function Coin() {
           {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
         </title>
       </Helmet>
+      <Previous>
+        <Link to={`/`}>&larr;</Link>
+      </Previous>
       <Header>
         <Title>
           {state?.name ? state.name : loading ? "Loading..." : infoData?.name}

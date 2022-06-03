@@ -30,7 +30,7 @@ function Chart({ coinId }: ChartProps) {
         <ApexChart
           type="line"
           series={[
-            { name: "price", data: data?.map((price) => price.close) ?? [] }, // as number[]
+            { name: "price", data: data?.map((price) => price.close) ?? [] },
           ]}
           options={{
             theme: { mode: "dark" },
