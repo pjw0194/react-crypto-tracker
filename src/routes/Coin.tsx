@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router";
 import { useLocation, Routes, Route, Link, useMatch } from "react-router-dom";
@@ -17,7 +16,7 @@ const Container = styled.div`
 
 const Previous = styled.div`
   position: absolute;
-  top: 55px;
+  top: 40px;
   left: 30px;
   font-size: 30px;
 `;
@@ -44,7 +43,7 @@ const CoinInfo = styled.div`
   width: 500px;
   padding: 15px;
   margin-bottom: 20px;
-  background-color: black;
+  background-color: ${(props) => props.theme.listColor};
   border-radius: 15px;
   justify-content: space-between;
   align-items: center;
@@ -78,7 +77,7 @@ const Tabs = styled.div`
 
 const Tab = styled.div<{ isActive: boolean }>`
   display: flex;
-  background-color: black;
+  background-color: ${(props) => props.theme.listColor};
   width: 245px;
   height: 40px;
   border-radius: 15px;
@@ -148,7 +147,11 @@ interface PriceData {
   };
 }
 
-function Coin() {
+interface ICoinProps {
+  isDark: boolean;
+}
+
+function Coin({ isDark }: ICoinProps) {
   const { coinId } = useParams();
   const location = useLocation();
   const state = location.state as RouteState;
@@ -243,7 +246,10 @@ function Coin() {
 
           <Routes>
             <Route path="price" element={<Price />} />
-            <Route path="chart" element={<Chart coinId={coinId!} />} />
+            <Route
+              path="chart"
+              element={<Chart coinId={coinId!} isDark={isDark} />}
+            />
           </Routes>
         </>
       )}
